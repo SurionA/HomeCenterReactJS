@@ -1,5 +1,30 @@
+:root {
+  --base-color: #9577cb;
+  --base-font-color: #fff;
+  --secondary-font-color: #7e5bbf;
+  --dark-secondary-color: #7e5bbf;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color: var(--base-font-color);
+  background-color: var(--base-color);
+}
+
+.title {
+  font-weight: 500;
+  padding: 10px;
+  margin: 0;
+  border-radius: 5px;
+  background-color: var(--dark-secondary-color);
+}
+
+.section {
+  padding: 15px;
+}
+
+.Select-menu-outer {
+  color: var(--secondary-font-color);
 }
