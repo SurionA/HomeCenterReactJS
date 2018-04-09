@@ -1,25 +1,29 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Grid, Row } from 'react-bootstrap';
-import Loader from 'react-loader';
+import React, { Component } from "react";
+import axios from "axios";
+import { Grid, Row } from "react-bootstrap";
+import Loader from "react-loader";
 
-import CONSTANTS from '../constants';
-import WrapCurrentWeather from './WrapCurrentWeather';
-import WrapForecastWeather from './WrapForecastWeather';
-import CitySelect from '../CitySelect';
-import { WeatherDisplayCurrent, WeatherDisplayForecast } from '../WeatherDisplay';
+import CONSTANTS from "../constants";
+import WrapCurrentWeather from "./utils/WrapCurrentWeather";
+import WrapForecastWeather from "./utils/WrapForecastWeather";
+import CitySelect from "../CitySelect";
+import {
+  WeatherDisplayCurrent,
+  WeatherDisplayForecast
+} from "../WeatherDisplay";
 
 export default class WeatherContainer extends Component {
   constructor(props) {
     super(props);
-    this.loadWeatherData = this.loadWeatherData.bind(this);
-    this.onChangeCity = this.onChangeCity.bind(this);
+
     this.state = {
       placeId: process.env.REACT_APP_OPENWEATHERMAP_CITY_ID,
-      currentWeather: {},
-      foreCastWeather: [],
-      loaded: false,
+      currentWeather: undefined,
+      foreCastWeather: undefined
     };
+
+    this.loadWeatherData = this.loadWeatherData.bind(this);
+    this.onChangeCity = this.onChangeCity.bind(this);
   }
 
   componentDidMount() {
@@ -30,54 +34,55 @@ export default class WeatherContainer extends Component {
     this.setState(
       {
         placeId: cityId,
-        loaded: false,
+        currentWeather: undefined,
+        foreCastWeather: undefined
       },
-      this.loadWeatherData,
+      this.loadWeatherData
     );
   }
 
   async loadWeatherData() {
+    const { url_params, baseUrl, uri } = CONSTANTS.resources.openweathermap;
+
     const params = {
-      ...CONSTANTS.resources.openweathermap.url_params,
-      placeId: this.state.placeId,
+      ...url_params,
+      placeId: this.state.placeId
     };
-    let currentWeatherResult;
-    let forecastWeatherResult;
 
     try {
-      currentWeatherResult = await axios.get(
-        CONSTANTS.resources.openweathermap.baseUrl + CONSTANTS.resources.openweathermap.uri.current,
-        {
-          params: {
-            appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
-            id: params.placeId,
-            lang: params.lang,
-            units: params.units,
-          },
-        },
-      );
+      const currentWeatherResult = await axios.get(baseUrl + uri.current, {
+        params: {
+          appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
+          id: params.placeId,
+          lang: params.lang,
+          units: params.units
+        }
+      });
 
-      forecastWeatherResult = await axios.get(
-        CONSTANTS.resources.openweathermap.baseUrl +
-          CONSTANTS.resources.openweathermap.uri.forecast,
-        {
-          params: {
-            appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
-            id: params.placeId,
-            lang: params.lang,
-            units: params.units,
-          },
-        },
-      );
+      this.setState({
+        currentWeather: WrapCurrentWeather(currentWeatherResult.data)
+      });
+
+      const forecastWeatherResult = await axios.get(baseUrl + uri.forecast, {
+        params: {
+          appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
+          id: params.placeId,
+          lang: params.lang,
+          units: params.units
+        }
+      });
+
+      this.setState({
+        foreCastWeather: WrapForecastWeather(forecastWeatherResult.data)
+      });
     } catch (err) {
-      console.log('Error while fecth weather data: ', err);
-    }
+      this.setState({
+        currentWeather: undefined,
+        foreCastWeather: undefined
+      });
 
-    this.setState({
-      currentWeather: WrapCurrentWeather(currentWeatherResult.data),
-      foreCastWeather: WrapForecastWeather(forecastWeatherResult.data),
-      loaded: true,
-    });
+      console.log("Error while fecth weather data: ", err);
+    }
   }
 
   render() {
@@ -86,16 +91,22 @@ export default class WeatherContainer extends Component {
         <Row className="section">
           <CitySelect onChangeCity={this.onChangeCity} />
         </Row>
-        <Row className="section">
-          <Loader color="#fff" loaded={this.state.loaded}>
+        {this.state.currentWeather ? (
+          <Row className="section">
             <WeatherDisplayCurrent weatherData={this.state.currentWeather} />
-          </Loader>
-        </Row>
-        <Row className="section">
-          <Loader color="#fff" loaded={this.state.loaded}>
-            <WeatherDisplayForecast foreCastWeatherData={this.state.foreCastWeather} />
-          </Loader>
-        </Row>
+          </Row>
+        ) : (
+          <Loader color="#fff" />
+        )}
+        {this.state.foreCastWeather ? (
+          <Row className="section">
+            <WeatherDisplayForecast
+              foreCastWeatherData={this.state.foreCastWeather}
+            />
+          </Row>
+        ) : (
+          <Loader color="#fff" />
+        )}
       </Grid>
     );
   }

@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { Row } from 'react-bootstrap';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import { Row } from "react-bootstrap";
 
-import { iconStyle, temperatureStyle } from './styles';
+import { iconStyle, temperatureStyle } from "./styles";
 
 function ForecastBlock({ weatherData }) {
   return (
@@ -13,8 +13,12 @@ function ForecastBlock({ weatherData }) {
       <Row>
         <div style={iconStyle} className={`wi wi-icon-${weatherData.icon}`} />
       </Row>
-      <Row style={temperatureStyle}>{Math.round(parseInt(weatherData.temperature_max, 10))}°</Row>
-      <Row style={temperatureStyle}>{Math.round(parseInt(weatherData.temperature_min, 10))}°</Row>
+      <Row style={temperatureStyle}>
+        {Math.round(parseInt(weatherData.temperature_max, 10))}°
+      </Row>
+      <Row style={temperatureStyle}>
+        {Math.round(parseInt(weatherData.temperature_min, 10))}°
+      </Row>
     </Fragment>
   );
 }
@@ -25,12 +29,12 @@ ForecastBlock.propTypes = {
     temperature_min: PropTypes.number,
     icon: PropTypes.number,
     dt: PropTypes.number,
-    dayShortName: PropTypes.string,
-  }),
+    dayShortName: PropTypes.string
+  })
 };
 
 ForecastBlock.defaultProps = {
-  weatherData: PropTypes.shape({}),
+  weatherData: PropTypes.shape({})
 };
 
 export default ForecastBlock;

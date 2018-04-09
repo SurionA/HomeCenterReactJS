@@ -1,9 +1,7 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { Row } from 'react-bootstrap';
-
-// import { mappingIcon } from '../../../WeatherIcon';
-import { iconStyle, temperatureStyle } from './styles';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import { Row } from "react-bootstrap";
+import { iconStyle, temperatureStyle } from "./styles";
 
 function WeatherDisplayCurrent({ weatherData }) {
   return (
@@ -14,7 +12,9 @@ function WeatherDisplayCurrent({ weatherData }) {
       <Row>
         <div style={iconStyle} className={`wi wi-icon-${weatherData.icon}`} />
       </Row>
-      <Row style={temperatureStyle}>{Math.round(parseInt(weatherData.temperature, 10))}°</Row>
+      <Row style={temperatureStyle}>
+        {Math.round(parseInt(weatherData.temperature, 10))}°
+      </Row>
     </Fragment>
   );
 }
@@ -24,13 +24,13 @@ WeatherDisplayCurrent.propTypes = {
     name: PropTypes.string,
     humidity: PropTypes.number,
     temperature: PropTypes.number,
-    icon: PropTypes.number,
-  }),
+    icon: PropTypes.number
+  })
 };
 
 WeatherDisplayCurrent.defaultProps = {
   weatherData: PropTypes.shape({
-    name: 'DefaultName',
-  }),
+    name: "DefaultName"
+  })
 };
 export default WeatherDisplayCurrent;

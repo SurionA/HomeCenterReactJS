@@ -1,13 +1,13 @@
 export const selectStyle = {
-  margin: 'auto',
-  minWidth: '350px',
-  color: 'var(--secondary-font-color)',
+  margin: "auto",
+  minWidth: "350px",
+  color: "var(--secondary-font-color)"
 };
 
 export const titleStyle = {
-    textAlign: 'left',
-}
+  textAlign: "left"
+};
 
 export default {
-  selectStyle,
+  selectStyle
 };
