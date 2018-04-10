@@ -4,10 +4,10 @@ import { Grid, Row } from 'react-bootstrap';
 import Loader from 'react-loader';
 
 import CONSTANTS from '../constants';
-import WrapCurrentWeather from './utils/WrapCurrentWeather';
-import WrapForecastWeather from './utils/WrapForecastWeather';
-import CitySelect from '../CitySelect';
-import { WeatherDisplayCurrent, WeatherDisplayForecast } from '../WeatherDisplay';
+import WrapCurrentWeather from './utils/wrapCurrentWeather';
+import WrapForecastWeather from './utils/wrapForecastWeather';
+import CitySelect from './Components/CitySelect';
+import { WeatherDisplayCurrent, WeatherDisplayForecast } from './Components';
 
 export default class WeatherContainer extends Component {
   constructor(props) {

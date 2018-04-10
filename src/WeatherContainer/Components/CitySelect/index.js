@@ -4,7 +4,7 @@ import VirtualizedSelect from 'react-virtualized-select';
 import 'react-select/dist/react-select.css';
 import 'react-virtualized-select/styles.css';
 
-import CITIES from '../Fixtures/cities-fr.json';
+import CITIES from '../../../fixtures/cities-fr.json';
 import { selectStyle, titleStyle } from './styles';
 
 export default class CitySelect extends Component {
