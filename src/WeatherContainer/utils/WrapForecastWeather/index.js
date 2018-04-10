@@ -4,7 +4,6 @@ import { moment } from '../../../utils';
 function WrapForecastWeather(data) {
   const baseDateTime = moment.unix(data.list[0].dt);
   const baseTimeInMinutes = baseDateTime.minutes() + baseDateTime.hours() * 60;
-  const sliceFrom = moment().minutes() + moment().hours() * 60 >= 21 * 60 ? 0 : 1;
 
   return data.list
     .map(dailyForecast => ({
@@ -15,12 +14,18 @@ function WrapForecastWeather(data) {
       dayShortName: moment.unix(dailyForecast.dt).format('ddd'),
     }))
     .filter(dailyForecast => {
+      const forecastDate = moment.unix(dailyForecast.dt).format('DD MM YYYY');
+      const currentDate = moment().format('DD MM YYYY');
+
+      return currentDate !== forecastDate;
+    })
+    .filter(dailyForecast => {
       const forecastTime = moment.unix(dailyForecast.dt);
       const timeInMinutes = forecastTime.minutes() + forecastTime.hours() * 60;
 
       return timeInMinutes === baseTimeInMinutes;
     })
-    .slice(sliceFrom, CONSTANT.resources.forecast.numberToShow + sliceFrom);
+    .slice(0, CONSTANT.resources.forecast.numberToShow);
 }
 
 export default WrapForecastWeather;
