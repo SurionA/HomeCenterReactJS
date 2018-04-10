@@ -1,7 +1,7 @@
-import React from "react";
-import { Grid, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
-import ForecastBlock from "./Components/ForecastBlock";
+import React from 'react';
+import { Grid, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import ForecastBlock from './Components/ForecastBlock';
 
 function WeatherDisplayForecast({ foreCastWeatherData }) {
   return (
@@ -22,13 +22,13 @@ WeatherDisplayForecast.propTypes = {
       temperature_min: PropTypes.number,
       icon: PropTypes.number,
       dt: PropTypes.number,
-      dayShortName: PropTypes.string
+      dayShortName: PropTypes.string,
     })
-  )
+  ),
 };
 
 WeatherDisplayForecast.defaultProps = {
-  foreCastWeatherData: PropTypes.arrayOf(PropTypes.shape({}))
+  foreCastWeatherData: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 export default WeatherDisplayForecast;

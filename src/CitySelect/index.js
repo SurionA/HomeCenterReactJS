@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
-import VirtualizedSelect from "react-virtualized-select";
-import "react-select/dist/react-select.css";
-import "react-virtualized-select/styles.css";
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import VirtualizedSelect from 'react-virtualized-select';
+import 'react-select/dist/react-select.css';
+import 'react-virtualized-select/styles.css';
 
-import CITIES from "../Fixtures/cities-fr.json";
-import { selectStyle, titleStyle } from "./styles";
+import CITIES from '../Fixtures/cities-fr.json';
+import { selectStyle, titleStyle } from './styles';
 
 export default class CitySelect extends Component {
   constructor(props) {
@@ -13,8 +13,8 @@ export default class CitySelect extends Component {
     this.state = {
       selectedCity: {
         id: CITIES[0].id,
-        nm: CITIES[0].nm
-      }
+        nm: CITIES[0].nm,
+      },
     };
 
     this.onChange = this.onChange.bind(this);
@@ -25,8 +25,8 @@ export default class CitySelect extends Component {
       this.setState({
         selectedCity: {
           id: city.id,
-          nm: city.nm
-        }
+          nm: city.nm,
+        },
       });
 
       this.props.onChangeCity(city.id);
@@ -54,5 +54,5 @@ export default class CitySelect extends Component {
 }
 
 CitySelect.propTypes = {
-  onChangeCity: PropTypes.func.isRequired
+  onChangeCity: PropTypes.func.isRequired,
 };

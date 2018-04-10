@@ -1,11 +1,10 @@
-import CONSTANT from "../../../constants";
-import { moment } from "../../../Utils";
+import CONSTANT from '../../../constants';
+import { moment } from '../../../utils';
 
 function WrapForecastWeather(data) {
   const baseDateTime = moment.unix(data.list[0].dt);
   const baseTimeInMinutes = baseDateTime.minutes() + baseDateTime.hours() * 60;
-  const sliceFrom =
-    moment().minutes() + moment().hours() * 60 >= 21 * 60 ? 0 : 1;
+  const sliceFrom = moment().minutes() + moment().hours() * 60 >= 21 * 60 ? 0 : 1;
 
   return data.list
     .map(dailyForecast => ({
@@ -13,7 +12,7 @@ function WrapForecastWeather(data) {
       temperature_min: Math.round(dailyForecast.main.temp_min),
       icon: dailyForecast.weather[0] && dailyForecast.weather[0].id,
       dt: dailyForecast.dt,
-      dayShortName: moment.unix(dailyForecast.dt).format("ddd")
+      dayShortName: moment.unix(dailyForecast.dt).format('ddd'),
     }))
     .filter(dailyForecast => {
       const forecastTime = moment.unix(dailyForecast.dt);

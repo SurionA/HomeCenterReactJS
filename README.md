@@ -30,10 +30,11 @@ npm run build
 npm run build
 ```
 
-### PRETTIER
+### LINTERS
 
 ```shell
-npm run prettier
+npm run lint
+npm run lint-fix
 ```
 
 ### PRODUCTION
@@ -49,5 +50,5 @@ docker build -t local/open-weather-app .
 Then run the container
 
 ```shell
-docker run -d -p 9229:9229 local/open-weather-app
+docker run -d -p 3000:3000 local/open-weather-app
 ```
