@@ -1,5 +1,5 @@
 import CONSTANT from '../../../constants';
-import { moment } from '../../../utils';
+import moment from '../../../utils/moment';
 
 function WrapForecastWeather(data) {
   const baseDateTime = moment.unix(data.list[0].dt);
