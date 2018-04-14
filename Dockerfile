@@ -2,17 +2,19 @@
 FROM node:8.10.0
 
 LABEL maintainer="SurionA <frere.maxime@gmail.com>"
-LABEL description="Provides an image with basic nodejs service"
+LABEL description="Provides an image that build and serve reactjs app"
 
+# Build
+FROM node:8.10.0 as build-deps
+WORKDIR /usr/src/app
+COPY package.json yarn.lock ./
+RUN npm i
+COPY . ./
+RUN npm run build
 
-RUN mkdir -p /srv/openweatherapp/
-COPY ./ /srv/openweatherapp/
+# Production
+FROM nginx:1.12-alpine
+COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 
-RUN ls -la /srv
-RUN ls -la /srv/openweatherapp/
-
-RUN cd /srv/openweatherapp/ && rm -rf node_modules && npm i
-
-EXPOSE 3000
-
-CMD cd /srv/openweatherapp/ && npm start
