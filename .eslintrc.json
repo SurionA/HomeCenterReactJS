@@ -5,10 +5,12 @@
     "prettier/react"
   ],
   "plugins": [
-    "prettier"
+    "prettier",
+    "cypress"
   ],
   "env": {
     "browser": true,
+    "cypress/globals": true,
     "jest": true,
     "node": true
   },

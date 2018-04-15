@@ -1,5 +1,5 @@
 {
-  "name": "tradelab-app",
+  "name": "home-center-web-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,12 +24,16 @@
     "eject": "react-scripts eject",
     "prettier": "prettier --no-config --write '**/*.js'",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
+    "lint-fix": "eslint . --fix",
+    "cypress-run": "cypress run",
+    "cypress-open": "cypress open"
   },
   "devDependencies": {
+    "cypress": "2.1.0",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "16.1.0",
     "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-import": "2.10.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-prettier": "2.6.0",

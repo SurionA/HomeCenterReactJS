@@ -85,18 +85,18 @@ export default class WeatherContainer extends Component {
   render() {
     return (
       <Grid>
-        <Row className="section">
+        <Row className="section" data-e2e-id="CitySelect">
           <CitySelect onChangeCity={this.onChangeCity} />
         </Row>
         {this.state.currentWeather ? (
-          <Row className="section">
+          <Row className="section" data-e2e-id="WeatherDisplayCurrent">
             <WeatherDisplayCurrent weatherData={this.state.currentWeather} />
           </Row>
         ) : (
           <Loader color="#fff" />
         )}
         {this.state.foreCastWeather ? (
-          <Row className="section">
+          <Row className="section" data-e2e-id="WeatherDisplayForecast">
             <WeatherDisplayForecast foreCastWeatherData={this.state.foreCastWeather} />
           </Row>
         ) : (
