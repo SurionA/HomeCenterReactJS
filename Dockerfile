@@ -7,10 +7,11 @@ LABEL description="Provides an image that build and serve reactjs app"
 # Build
 FROM node:8.10.0 as build-deps
 WORKDIR /usr/src/app
+
 COPY package.json yarn.lock ./
-RUN npm i
+RUN yarn install --production
 COPY . ./
-RUN npm run build
+RUN yarn build
 
 # Production
 FROM nginx:1.12-alpine
