@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly ForecastBlock component 1`] = `
+Array [
+  <div
+    className="row"
+>
+    <h3
+        className="title"
+    >
+        Mon
+    </h3>
+</div>,
+  <div
+    className="row"
+>
+    <div
+        className="wi wi-icon-800"
+        style={
+            Object {
+                "fontSize": "4rem",
+                "margin": "15px 0",
+              }
+        }
+    />
+</div>,
+  <div
+    className="row"
+    style={
+        Object {
+            "fontSize": "1.4rem",
+          }
+    }
+>
+    16
+    °
+</div>,
+  <div
+    className="row"
+    style={
+        Object {
+            "fontSize": "1.4rem",
+          }
+    }
+>
+    12
+    °
+</div>,
+]
+`;

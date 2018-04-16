@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly WeatherDisplayCurrent component 1`] = `
+Array [
+  <div
+    className="row"
+>
+    <h3
+        className="title"
+    >
+        City Name
+    </h3>
+</div>,
+  <div
+    className="row"
+>
+    <div
+        className="wi wi-icon-800"
+        style={
+            Object {
+                "fontSize": "10rem",
+                "margin": "35px 0",
+              }
+        }
+    />
+</div>,
+  <div
+    className="row"
+    style={
+        Object {
+            "fontSize": "2rem",
+          }
+    }
+>
+    15
+    °
+</div>,
+]
+`;
