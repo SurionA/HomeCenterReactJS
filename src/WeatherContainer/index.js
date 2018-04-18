@@ -4,8 +4,8 @@ import { Grid, Row } from 'react-bootstrap';
 import Loader from 'react-loader';
 
 import CONSTANTS from '../constants';
-import WrapCurrentWeather from './utils/wrapCurrentWeather';
-import WrapForecastWeather from './utils/wrapForecastWeather';
+import wrapCurrentWeather from './utils/wrapCurrentWeather';
+import wrapForecastWeather from './utils/wrapForecastWeather';
 import CitySelect from './Components/CitySelect';
 import { WeatherDisplayCurrent, WeatherDisplayForecast } from './Components';
 
@@ -57,7 +57,7 @@ export default class WeatherContainer extends Component {
       });
 
       this.setState({
-        currentWeather: WrapCurrentWeather(currentWeatherResult.data),
+        currentWeather: wrapCurrentWeather(currentWeatherResult.data),
       });
 
       const forecastWeatherResult = await axios.get(baseUrl + uri.forecast, {
@@ -70,7 +70,7 @@ export default class WeatherContainer extends Component {
       });
 
       this.setState({
-        foreCastWeather: WrapForecastWeather(forecastWeatherResult.data),
+        foreCastWeather: wrapForecastWeather(forecastWeatherResult.data),
       });
     } catch (err) {
       this.setState({

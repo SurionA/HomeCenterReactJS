@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Row } from 'react-bootstrap';
+
 import { iconStyle, temperatureStyle } from './styles';
 
 function WeatherDisplayCurrent({ weatherData }) {

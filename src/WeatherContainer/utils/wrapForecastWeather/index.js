@@ -1,7 +1,7 @@
 import CONSTANT from '../../../constants';
 import moment from '../../../utils/moment';
 
-function WrapForecastWeather(data) {
+function wrapForecastWeather(data) {
   const baseDateTime = moment.unix(data.list[0].dt);
   const baseTimeInMinutes = baseDateTime.minutes() + baseDateTime.hours() * 60;
 
@@ -28,4 +28,4 @@ function WrapForecastWeather(data) {
     .slice(0, CONSTANT.resources.forecast.numberToShow);
 }
 
-export default WrapForecastWeather;
+export default wrapForecastWeather;

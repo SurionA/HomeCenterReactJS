@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+
 import ForecastBlock from './Components/ForecastBlock';
 
 function WeatherDisplayForecast({ foreCastWeatherData }) {

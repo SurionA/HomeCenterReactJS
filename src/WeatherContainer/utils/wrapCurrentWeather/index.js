@@ -1,4 +1,4 @@
-function WrapCurrentWeather(data) {
+function wrapCurrentWeather(data) {
   return {
     name: data.name,
     humidity: data.main.humidity,
@@ -7,4 +7,4 @@ function WrapCurrentWeather(data) {
   };
 }
 
-export default WrapCurrentWeather;
+export default wrapCurrentWeather;

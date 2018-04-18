@@ -27,7 +27,8 @@ npm run build
 ### TEST
 
 ```shell
-npm run build
+npm run test
+npm run cypress-open // require running server: `npm start`
 ```
 
 ### LINTERS
@@ -50,5 +51,7 @@ docker build -t local/open-weather-app .
 Then run the container
 
 ```shell
-docker run -d -p 3000:3000 local/open-weather-app
+docker run -d -p 3000:80 local/open-weather-app
 ```
+
+Then  go to <http://localhost:3000/>
