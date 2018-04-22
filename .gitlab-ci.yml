@@ -1,0 +1,57 @@
+image: node:8.10.0
+
+stages:
+  - setup
+  - test
+
+setup:
+  stage: setup
+  script:
+    - yarn install --non-interactive
+  cache:
+    paths:
+      - node_modules/
+  artifacts:
+    untracked: true
+    paths:
+     - node_modules/
+
+test:lint:
+  stage: test
+  dependencies:
+    - setup
+  except:
+    - triggers
+  variables:
+    TZ: America/New_York
+  tags:
+    - docker
+  script:
+    - yarn lint
+
+test:unit:
+  stage: test
+  dependencies:
+    - setup
+  except:
+    - triggers
+  variables:
+    TZ: America/New_York
+  tags:
+    - docker
+  script:
+    - yarn test
+
+test:e2e:
+  stage: test
+  image: cypress/base
+  dependencies:
+    - setup
+  except:
+    - triggers
+  variables:
+    TZ: America/New_York
+  tags:
+    - docker
+  script:
+    - yarn cypress-run-docker
